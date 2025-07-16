@@ -15,7 +15,8 @@ public class MenuItem {
     }
 
     // 기능
-    public void printMenu() {
-        System.out.println(name + " | ₩ " + price + " | " + description);
-    }
+//    public void printMenu() {
+//        System.out.println(name + " | ₩ " + price + " | " + description);
+//        System.out.printf("%-15s | ₩ %.1f | %s%n", name, price, description);
+//    }
 }
