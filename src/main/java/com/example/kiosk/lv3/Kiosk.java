@@ -4,20 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/* 같은 패키지의 MenuItem을 사용하므로 import 생략
+import com.example.kiosk.lv3.MenuItem;
+ */
+
 public class Kiosk {
 
     List<MenuItem> menuList = new ArrayList<>();
 
+    // 생성자
     public Kiosk() {
 
         System.out.println("Hello, Kiosk!");
 
-        menuList.add(new com.example.kiosk.lv3.MenuItem("ShackBurger", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
-        menuList.add(new com.example.kiosk.lv3.MenuItem("SmokeShack", 8.9, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
-        menuList.add(new com.example.kiosk.lv3.MenuItem("Cheeseburger", 6.9, "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거"));
-        menuList.add(new com.example.kiosk.lv3.MenuItem("Hamburger", 5.4, "비프패티를 기반으로 야채가 들어간 기본버거"));
+        menuList.add(new MenuItem("ShackBurger", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
+        menuList.add(new MenuItem("SmokeShack", 8.9, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
+        menuList.add(new MenuItem("Cheeseburger", 6.9, "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거"));
+        menuList.add(new MenuItem("Hamburger", 5.4, "비프패티를 기반으로 야채가 들어간 기본버거"));
     }
 
+    // start() 메서드
     public void start() {
         Scanner scanner = new Scanner(System.in);
 
@@ -37,7 +43,7 @@ public class Kiosk {
             try {
                 choice = scanner.nextInt();
             } catch (Exception e) {
-                System.out.println("올바른 숫자(0~4)를 입력하세요.");
+                System.out.printf("올바른 숫자(0~%d)를 입력하세요.", menuList.size());
                 scanner.nextLine(); // 잘못된 입력 버퍼 비우기 -> 필수
                 continue;
             }
@@ -53,7 +59,7 @@ public class Kiosk {
                 running = false;
                 break;
             } else {
-                System.out.println("올바른 숫자(0~4)를 입력하세요.");
+                System.out.printf("올바른 숫자(0~%d)를 입력하세요.", menuList.size());
             }
         }
     }
