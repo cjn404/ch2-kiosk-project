@@ -11,9 +11,9 @@ public class Main {
         List<MenuItem> menuList = new ArrayList<>();
 
         menuList.add(new MenuItem("ShackBurger", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
-        menuList.add(new MenuItem("SmokeShack", 8.9,  "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
+        menuList.add(new MenuItem("SmokeShack", 8.9, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
         menuList.add(new MenuItem("Cheeseburger", 6.9, "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거"));
-        menuList.add(new MenuItem("Hamburger",5.4, "비프패티를 기반으로 야채가 들어간 기본버거"));
+        menuList.add(new MenuItem("Hamburger", 5.4, "비프패티를 기반으로 야채가 들어간 기본버거"));
 
         Scanner scanner = new Scanner(System.in); // 반복문 밖에서 한번만
 
@@ -24,7 +24,7 @@ public class Main {
         while (running) {
             System.out.println("\n[ SHAKESHACK MENU ]");
             for (int i = 0; i < menuList.size(); i++) {
-                System.out.print((i + 1) + ". ");
+//                System.out.print((i + 1) + ". ");
 //                menuList.get(i).printMenu();
                 System.out.printf("%d. %-15s | ₩ %.1f | %s%n", i + 1, menuList.get(i).name, menuList.get(i).price, menuList.get(i).description);
             }
