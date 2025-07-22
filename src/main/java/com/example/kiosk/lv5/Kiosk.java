@@ -8,6 +8,11 @@ public class Kiosk {
 
     private final List<Menu> menuCategoryList;
 
+    // 메인 메뉴(카테고리) 리스트 반환하는 getter 메서드
+//    public List<Menu> getMenuCategoryList() {
+//        return menuCategoryList;
+//    }
+
     // 생성자
     public Kiosk() {
 
@@ -24,7 +29,7 @@ public class Kiosk {
 
         List<MenuItem> drinksMenu = new ArrayList<>();
         drinksMenu.add(new MenuItem("Coca-Cola", 1.9, "시원한 클래식 콜라"));
-        drinksMenu.add(new MenuItem("Sprite", 1.9, "시원한 레몬 향의 스트라이트"));
+        drinksMenu.add(new MenuItem("Sprite", 1.9, "시원한 레몬 향의 스프라이트"));
         drinksMenu.add(new MenuItem("Iced Tea", 1.5, "시원 달콤한 홍차"));
         drinksMenu.add(new MenuItem("Lemonade", 1.9, "상큼한 레몬 맛의 레모네이드"));
         menuCategoryList.add(new Menu("Drinks", drinksMenu));
@@ -46,9 +51,14 @@ public class Kiosk {
         while (running) {
             // 1. 메인 메뉴(카테고리) 출력
             System.out.println("\n[ MAIN MENU ]");
-            for (int i = 0; i < menuCategoryList.size(); i++) {
-                System.out.printf("%d. %s%n", i + 1, menuCategoryList.get(i).getCategoryName());
+
+            int i = 1;
+            for (Menu category : menuCategoryList) {
+                System.out.printf("%d. %s%n", i++, category.getCategoryName());
             }
+//            for (int i = 0; i < menuCategoryList.size(); i++) {
+//                System.out.printf("%d. %s%n", i + 1, menuCategoryList.get(i).getCategoryName());
+//            }
             System.out.println("0. 종료      | 종료\n");
 
             System.out.print("메뉴 카테고리를 선택하세요: ");
@@ -75,10 +85,15 @@ public class Kiosk {
                 while (inCategory) {
                     System.out.println("\n[ " + selectedCategory.getCategoryName().toUpperCase() + " MENU ]");
                     List<MenuItem> items = selectedCategory.getMenuList();
-                    for (int i = 0; i < items.size(); i++) {
-                        MenuItem item = items.get(i);
-                        System.out.printf("%d. %-15s | ₩ %.1f | %s%n", i + 1, item.getName(), item.getPrice(), item.getDescription());
+
+                    int j = 1;
+                    for (MenuItem item : items) {
+                        System.out.printf("%d. %-15s | ₩ %.1f | %s%n", j++, item.getName(), item.getPrice(), item.getDescription());
                     }
+//                        for (int i = 0; i < items.size(); i++) {
+//                            MenuItem item = items.get(i);
+//                            System.out.printf("%d. %-15s | ₩ %.1f | %s%n", i + 1, item.getName(), item.getPrice(), item.getDescription());
+//                        }
                     System.out.println("0. 뒤로가기");
 
                     System.out.print("메뉴를 선택하세요: ");
