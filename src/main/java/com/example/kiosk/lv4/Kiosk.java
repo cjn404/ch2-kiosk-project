@@ -98,6 +98,8 @@ public class Kiosk {
                         MenuItem selectedItem = items.get(itemChoice - 1);
                         System.out.printf("선택한 메뉴: %-15s | ₩ %.1f | %s%n", selectedItem.name, selectedItem.price, selectedItem.description);
                         System.out.println("주문이 완료되었습니다. 금액은 ₩ " + selectedItem.price + " 입니다.");
+
+                        inCategory = false; // 메뉴 선택 후 카테고리 선택 메뉴로 돌아가기
                     } else {
                         System.out.printf("올바른 숫자(0~%d)를 입력하세요.\n", items.size());
                     }
