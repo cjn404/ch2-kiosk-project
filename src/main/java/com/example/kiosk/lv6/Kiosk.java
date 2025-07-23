@@ -118,7 +118,18 @@ public class Kiosk {
                         System.out.printf("%n\"%s | ₩ %.1f | %s\"%n", selectedItem.getName(), selectedItem.getPrice(), selectedItem.getDescription());
                         System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
                         System.out.println("1. 확인        2. 취소");
-                        int addCart = scanner.nextInt();
+
+//                        int addCart = scanner.nextInt();
+
+                        int addCart = -1;
+                        try {
+                            addCart = scanner.nextInt();
+                        } catch (Exception e) {
+                            System.out.println("올바른 숫자(1 또는 2)를 입력하세요.");
+                            scanner.nextLine(); // 입력 버퍼 비우기
+                            continue;
+                        }
+
                         if (addCart == 1) {
                             CartItem cartItem = new CartItem(
                                     selectedItem.getName(),
@@ -129,7 +140,17 @@ public class Kiosk {
                             System.out.println("\n[ ORDER MENU ]\n" +
                                     "4. Orders            | 장바구니를 확인 후 주문합니다.\n" +
                                     "5. Cancel            | 진행중인 주문을 취소합니다.");
-                            int orderChoice = scanner.nextInt();
+
+//                            int orderChoice = scanner.nextInt();
+                            int orderChoice = -1;
+                            try {
+                                orderChoice = scanner.nextInt();
+                            } catch (Exception e) {
+                                System.out.println("올바른 숫자(4 또는 5)를 입력하세요.");
+                                scanner.nextLine(); // 입력 버퍼 비우기
+                                continue;
+                            }
+
                             if (orderChoice == 4) {
                                 System.out.println("아래와 같이 주문 하시겠습니까?");
                                 System.out.println("\n[ Orders ]");
@@ -140,7 +161,17 @@ public class Kiosk {
                                 System.out.println("\n[ Total ]");
                                 System.out.printf("₩ %.1f", cart.getCartPrice());
                                 System.out.println("\n1. 주문      2. 메뉴판");
-                                int orderFinal = scanner.nextInt();
+
+//                                int orderFinal = scanner.nextInt();
+                                int orderFinal = -1;
+                                try {
+                                    orderFinal = scanner.nextInt();
+                                } catch (Exception e) {
+                                    System.out.println("올바른 숫자(1 또는 2)를 입력하세요.");
+                                    scanner.nextLine(); // 입력 버퍼 비우기
+                                    continue;
+                                }
+
                                 if (orderFinal == 1) {
                                     System.out.println("주문이 완료되었습니다. 금액은 ₩" + cart.getCartPrice() + " 입니다.");
                                     cart.clearCart(); // 장바구니 비우기
