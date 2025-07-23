@@ -123,8 +123,8 @@ public class Kiosk {
                             CartItem cartItem = new CartItem(
                                     selectedItem.getName(),
                                     selectedItem.getPrice(),
-                                    1);
-                            cart.addItem(cartItem);
+                                    1); // 장바구니 수량 1로 설정
+                            cart.addItems(cartItem);
                             System.out.println(selectedItem.getName() + " 이 장바구니에 추가되었습니다.");
                             System.out.println("\n[ ORDER MENU ]\n" +
                                     "4. Orders       | 장바구니를 확인 후 주문합니다.\n" +

@@ -7,14 +7,23 @@ public class Cart {
 
     private final List<CartItem> cartItemList = new ArrayList<>();
 
-    public void addItem(CartItem item) {
-        cartItemList.add(item);
-    }
-
     public List<CartItem> getCartItemList() {
         return cartItemList;
     }
 
+    // 수량 누적
+    public void addItems(CartItem cartItem) {
+        for (CartItem item : cartItemList) {
+            if (item.getCartItemName().equals(cartItem.getCartItemName())) {
+                item.setCartQuantity(item.getCartQuantity() + cartItem.getCartQuantity());
+                return;
+            }
+        }
+        // 항목 없으면 새로 추가
+        cartItemList.add(cartItem);
+    }
+
+    // 총합
     public double getCartPrice() {
         double totalPrice = 0;
         for (CartItem cartItem : cartItemList) {
