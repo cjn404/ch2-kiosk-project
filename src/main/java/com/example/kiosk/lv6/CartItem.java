@@ -2,22 +2,22 @@ package com.example.kiosk.lv6;
 
 public class CartItem {
 
-    private String cartItem;
+    private String cartItemName;
     private double cartPrice;
     private int cartQuantity;
 
     public CartItem(String cartItem, double cartPrice, int cartQuantity) {
-        this.cartItem = cartItem;
+        this.cartItemName = cartItem;
         this.cartPrice = cartPrice;
         this.cartQuantity = cartQuantity;
     }
 
-    public String getCartItem() {
-        return cartItem;
+    public String getCartItemName() {
+        return cartItemName;
     }
 
-    public void setCartItem(String cartItem) {
-        this.cartItem = cartItem;
+    public void setCartItemName(String cartItemName) {
+        this.cartItemName = cartItemName;
     }
 
     public double getCartPrice() {
@@ -34,10 +34,5 @@ public class CartItem {
 
     public void setCartQuantity(int cartQuantity) {
         this.cartQuantity = cartQuantity;
-    }
-
-    // 기능 - 총합계산
-    public double getTotalOrderPrice() {
-        return getCartPrice() * getCartQuantity();
     }
 }

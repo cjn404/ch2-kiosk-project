@@ -1,7 +1,5 @@
 package com.example.kiosk.lv6;
 
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -122,6 +120,11 @@ public class Kiosk {
                         System.out.println("1. 확인        2. 취소");
                         int addCart = scanner.nextInt();
                         if (addCart == 1) {
+                            CartItem cartItem = new CartItem(
+                                    selectedItem.getName(),
+                                    selectedItem.getPrice(),
+                                    1);
+                            cart.addItem(cartItem);
                             System.out.println(selectedItem.getName() + " 이 장바구니에 추가되었습니다.");
                             System.out.println("\n[ ORDER MENU ]\n" +
                                     "4. Orders       | 장바구니를 확인 후 주문합니다.\n" +
@@ -130,17 +133,23 @@ public class Kiosk {
                             if (orderChoice == 4) {
                                 System.out.println("아래와 같이 주문 하시겠습니까?");
                                 System.out.println("\n[ Orders ]");
-                                System.out.printf("%s | ₩ %.1f | %s%n", selectedItem.getName(), selectedItem.getPrice(), selectedItem.getDescription());
+                                for (CartItem item : cart.getCartItemList()) {
+                                    System.out.printf("%s | ₩ %.1f | %s%n", item.getCartItemName(), item.getCartPrice(), item.getCartQuantity());
+                                }
+//                                System.out.printf("%s | ₩ %.1f | %s%n", selectedItem.getName(), selectedItem.getPrice(), selectedItem.getDescription());
                                 System.out.println("\n[ Total ]");
-                                System.out.printf("₩ %.1f", selectedItem.getPrice());
+                                System.out.printf("₩ %.1f", cart.getCartPrice());
                                 System.out.println("\n1. 주문      2. 메뉴판");
                                 int orderFinal = scanner.nextInt();
                                 if (orderFinal == 1) {
-                                    System.out.println("주문이 완료되었습니다. 금액은 " + selectedItem.getPrice() + " 입니다.");
+                                    System.out.println("주문이 완료되었습니다. 금액은 " + cart.getCartPrice() + " 입니다.");
+                                    cart.clearCart(); // 장바구니 비우기
+                                    inCategory = false; // 카테고리의 메뉴 반복 종료 -> 메인 메뉴로 복귀
                                 } else if (orderFinal == 2) {
                                     inCategory = false;
                                 }
                             } else if (orderChoice == 5) {
+                                cart.clearCart(); // 장바구니 비우기
                                 inCategory = false;
                             }
                         } else  if (addCart == 2) {

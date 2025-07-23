@@ -2,11 +2,33 @@ package com.example.kiosk.lv6;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Cart {
 
     private final List<CartItem> cartItemList = new ArrayList<>();
 
-    Scanner scanner = new Scanner(System.in);
+    public void addItem(CartItem item) {
+        cartItemList.add(item);
+    }
+
+    public List<CartItem> getCartItemList() {
+        return cartItemList;
+    }
+
+    public double getCartPrice() {
+        double totalPrice = 0;
+        for (CartItem cartItem : cartItemList) {
+            totalPrice += cartItem.getCartPrice();
+        }
+        return totalPrice;
+    }
+
+    public void clearCart() {
+        cartItemList.clear(); // 리스트 비우기
+    }
+
+    // 삭제
+//    public void removeItem(CartItem item) {
+//        cartItemList.remove(item);
+//    }
 }
