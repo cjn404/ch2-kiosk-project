@@ -27,7 +27,7 @@ public class Cart {
     public double getCartPrice() {
         double totalPrice = 0;
         for (CartItem cartItem : cartItemList) {
-            totalPrice += cartItem.getCartPrice();
+            totalPrice += cartItem.getCartPrice() * cartItem.getCartQuantity();;
         }
         return totalPrice;
     }
@@ -35,9 +35,4 @@ public class Cart {
     public void clearCart() {
         cartItemList.clear(); // 리스트 비우기
     }
-
-    // 삭제
-//    public void removeItem(CartItem item) {
-//        cartItemList.remove(item);
-//    }
 }

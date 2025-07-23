@@ -164,7 +164,7 @@ public class Kiosk {
                                                 continue;
                                             }
                                             if (orderFinal == 1) {
-                                                System.out.println("주문이 완료되었습니다. 금액은 ₩" + cart.getCartPrice() + " 입니다.");
+                                                System.out.println("주문이 완료되었습니다. 금액은 ₩ " + cart.getCartPrice() + " 입니다.");
                                                 cart.clearCart(); // 장바구니 비우기
                                                 inCategory = false; // 카테고리 메뉴 종료
                                                 break;
