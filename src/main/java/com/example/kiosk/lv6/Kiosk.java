@@ -10,11 +10,6 @@ public class Kiosk {
 
     private Cart cart = new Cart();
 
-    // 메인 메뉴(카테고리) 리스트 반환하는 getter 메서드
-//    public List<Menu> getMenuCategoryList() {
-//        return menuCategoryList;
-//    }
-
     // 생성자
     public Kiosk() {
 
@@ -115,84 +110,88 @@ public class Kiosk {
                         MenuItem selectedItem = items.get(itemChoice - 1);
                         System.out.printf("선택한 메뉴: %s | ₩ %.1f | %s%n", selectedItem.getName(), selectedItem.getPrice(), selectedItem.getDescription());
 
-                        System.out.printf("%n\"%s | ₩ %.1f | %s\"%n", selectedItem.getName(), selectedItem.getPrice(), selectedItem.getDescription());
-                        System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
-                        System.out.println("1. 확인        2. 취소");
+                        while (true) {
+                            System.out.printf("%n\"%s | ₩ %.1f | %s\"%n", selectedItem.getName(), selectedItem.getPrice(), selectedItem.getDescription());
+                            System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
+                            System.out.println("1. 확인        2. 취소");
 
-//                        int addCart = scanner.nextInt();
-
-                        int addCart = -1;
-                        try {
-                            addCart = scanner.nextInt();
-                        } catch (Exception e) {
-                            System.out.println("올바른 숫자(1 또는 2)를 입력하세요.");
-                            scanner.nextLine(); // 입력 버퍼 비우기
-                            continue;
-                        }
-
-                        if (addCart == 1) {
-                            CartItem cartItem = new CartItem(
-                                    selectedItem.getName(),
-                                    selectedItem.getPrice(),
-                                    1); // 장바구니 수량 1로 설정
-                            cart.addItems(cartItem);
-                            System.out.println(selectedItem.getName() + " 이 장바구니에 추가되었습니다.");
-                            System.out.println("\n[ ORDER MENU ]\n" +
-                                    "4. Orders            | 장바구니를 확인 후 주문합니다.\n" +
-                                    "5. Cancel            | 진행중인 주문을 취소합니다.");
-
-//                            int orderChoice = scanner.nextInt();
-                            int orderChoice = -1;
+                            int addCart = -1;
                             try {
-                                orderChoice = scanner.nextInt();
+                                addCart = scanner.nextInt();
                             } catch (Exception e) {
-                                System.out.println("올바른 숫자(4 또는 5)를 입력하세요.");
+                                System.out.println("올바른 숫자(1 또는 2)를 입력하세요.");
                                 scanner.nextLine(); // 입력 버퍼 비우기
                                 continue;
                             }
+                            if (addCart == 1) {
+                                CartItem cartItem = new CartItem(
+                                        selectedItem.getName(),
+                                        selectedItem.getPrice(),
+                                        1); // 장바구니 수량 1로 설정
+                                cart.addItems(cartItem);
+                                System.out.println(selectedItem.getName() + " 이 장바구니에 추가되었습니다.");
 
-                            if (orderChoice == 4) {
-                                System.out.println("아래와 같이 주문 하시겠습니까?");
-                                System.out.println("\n[ Orders ]");
-                                for (CartItem item : cart.getCartItemList()) {
-                                    System.out.printf("%s | ₩ %.1f | %s%n", item.getCartItemName(), item.getCartPrice(), item.getCartQuantity());
-                                }
-//                                System.out.printf("%s | ₩ %.1f | %s%n", selectedItem.getName(), selectedItem.getPrice(), selectedItem.getDescription());
-                                System.out.println("\n[ Total ]");
-                                System.out.printf("₩ %.1f", cart.getCartPrice());
-                                System.out.println("\n1. 주문      2. 메뉴판");
+                                while (true) {
+                                    System.out.println("\n[ ORDER MENU ]\n" +
+                                            "4. Orders            | 장바구니를 확인 후 주문합니다.\n" +
+                                            "5. Cancel            | 진행중인 주문을 취소합니다.");
 
-//                                int orderFinal = scanner.nextInt();
-                                int orderFinal = -1;
-                                try {
-                                    orderFinal = scanner.nextInt();
-                                } catch (Exception e) {
-                                    System.out.println("올바른 숫자(1 또는 2)를 입력하세요.");
-                                    scanner.nextLine(); // 입력 버퍼 비우기
-                                    continue;
-                                }
+                                    int orderChoice = -1;
+                                    try {
+                                        orderChoice = scanner.nextInt();
+                                    } catch (Exception e) {
+                                        System.out.println("올바른 숫자(4 또는 5)를 입력하세요.");
+                                        scanner.nextLine(); // 입력 버퍼 비우기
+                                        continue;
+                                    }
+                                    if (orderChoice == 4) {
+                                        System.out.println("아래와 같이 주문 하시겠습니까?");
+                                        System.out.println("\n[ Orders ]");
+                                        for (CartItem item : cart.getCartItemList()) {
+                                            System.out.printf("%s | ₩ %.1f | %d%n", item.getCartItemName(), item.getCartPrice(), item.getCartQuantity());
+                                        }
+                                        System.out.println("\n[ Total ]");
+                                        System.out.printf("₩ %.1f%n", cart.getCartPrice());
+                                        System.out.println("1. 주문      2. 메뉴판");
 
-                                if (orderFinal == 1) {
-                                    System.out.println("주문이 완료되었습니다. 금액은 ₩" + cart.getCartPrice() + " 입니다.");
-                                    cart.clearCart(); // 장바구니 비우기
-                                    inCategory = false; // 카테고리의 메뉴 반복 종료 -> 메인 메뉴로 복귀
-                                } else if (orderFinal == 2) {
-                                    inCategory = false;
+                                        int orderFinal = -1;
+                                        while (true) {
+                                            try {
+                                                orderFinal = scanner.nextInt();
+                                            } catch (Exception e) {
+                                                System.out.println("올바른 숫자(1 또는 2)를 입력하세요.");
+                                                scanner.nextLine();
+                                                continue;
+                                            }
+                                            if (orderFinal == 1) {
+                                                System.out.println("주문이 완료되었습니다. 금액은 ₩" + cart.getCartPrice() + " 입니다.");
+                                                cart.clearCart(); // 장바구니 비우기
+                                                inCategory = false; // 카테고리 메뉴 종료
+                                                break;
+                                            } else if (orderFinal == 2) {
+                                                inCategory = false;
+                                                break;
+                                            } else {
+                                                System.out.println("올바른 숫자(1 또는 2)를 입력하세요.");
+                                            }
+                                        }
+                                        break;
+                                    } else if (orderChoice == 5) {
+                                        cart.clearCart(); // 장바구니 비우기
+                                        inCategory = false;
+                                        break;
+                                    } else {
+                                        System.out.println("올바른 숫자(4 또는 5)를 입력하세요.");
+                                    }
                                 }
-                            } else if (orderChoice == 5) {
-                                cart.clearCart(); // 장바구니 비우기
-                                inCategory = false;
+                                break;
+                            } else if (addCart == 2) {
+                                break;
+                            } else {
+                                System.out.println("올바른 숫자(1 또는 2)를 입력하세요.");
                             }
-                        } else  if (addCart == 2) {
-                            inCategory = false;
                         }
                     }
-//                        System.out.println("주문이 완료되었습니다. 금액은 ₩ " + selectedItem.getPrice() + " 입니다.");
-//
-//                        inCategory = false; // 메뉴 선택 후 카테고리 선택 메뉴로 돌아가기
-//                    } else {
-//                        System.out.printf("올바른 숫자(0~%d)를 입력하세요.\n", items.size());
-//                    }
                 }
             } else {
                 System.out.printf("올바른 숫자(0~%d)를 입력하세요.\n", menuCategoryList.size());
