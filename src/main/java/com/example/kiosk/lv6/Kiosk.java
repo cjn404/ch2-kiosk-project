@@ -1,5 +1,7 @@
 package com.example.kiosk.lv6;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,6 +9,8 @@ import java.util.Scanner;
 public class Kiosk {
 
     private final List<Menu> menuCategoryList;
+
+    private Cart cart = new Cart();
 
     // 메인 메뉴(카테고리) 리스트 반환하는 getter 메서드
 //    public List<Menu> getMenuCategoryList() {
@@ -112,12 +116,43 @@ public class Kiosk {
                     } else if (itemChoice >= 1 && itemChoice <= items.size()) {
                         MenuItem selectedItem = items.get(itemChoice - 1);
                         System.out.printf("선택한 메뉴: %-15s | ₩ %.1f | %s%n", selectedItem.getName(), selectedItem.getPrice(), selectedItem.getDescription());
-                        System.out.println("주문이 완료되었습니다. 금액은 ₩ " + selectedItem.getPrice() + " 입니다.");
 
-                        inCategory = false; // 메뉴 선택 후 카테고리 선택 메뉴로 돌아가기
-                    } else {
-                        System.out.printf("올바른 숫자(0~%d)를 입력하세요.\n", items.size());
+                        System.out.printf("%n\"%s | ₩ %.1f | %s\"%n", selectedItem.getName(), selectedItem.getPrice(), selectedItem.getDescription());
+                        System.out.println("위 메뉴를 장바구니에 추가하시겠습니까?");
+                        System.out.println("1. 확인        2. 취소");
+                        int addCart = scanner.nextInt();
+                        if (addCart == 1) {
+                            System.out.println(selectedItem.getName() + " 이 장바구니에 추가되었습니다.");
+                            System.out.println("\n[ ORDER MENU ]\n" +
+                                    "4. Orders       | 장바구니를 확인 후 주문합니다.\n" +
+                                    "5. Cancel       | 진행중인 주문을 취소합니다.");
+                            int orderChoice = scanner.nextInt();
+                            if (orderChoice == 4) {
+                                System.out.println("아래와 같이 주문 하시겠습니까?");
+                                System.out.println("\n[ Orders ]");
+                                System.out.printf("%s | ₩ %.1f | %s%n", selectedItem.getName(), selectedItem.getPrice(), selectedItem.getDescription());
+                                System.out.println("\n[ Total ]");
+                                System.out.printf("₩ %.1f", selectedItem.getPrice());
+                                System.out.println("\n1. 주문      2. 메뉴판");
+                                int orderFinal = scanner.nextInt();
+                                if (orderFinal == 1) {
+                                    System.out.println("주문이 완료되었습니다. 금액은 " + selectedItem.getPrice() + " 입니다.");
+                                } else if (orderFinal == 2) {
+                                    inCategory = false;
+                                }
+                            } else if (orderChoice == 5) {
+                                inCategory = false;
+                            }
+                        } else  if (addCart == 2) {
+                            inCategory = false;
+                        }
                     }
+//                        System.out.println("주문이 완료되었습니다. 금액은 ₩ " + selectedItem.getPrice() + " 입니다.");
+//
+//                        inCategory = false; // 메뉴 선택 후 카테고리 선택 메뉴로 돌아가기
+//                    } else {
+//                        System.out.printf("올바른 숫자(0~%d)를 입력하세요.\n", items.size());
+//                    }
                 }
             } else {
                 System.out.printf("올바른 숫자(0~%d)를 입력하세요.\n", menuCategoryList.size());
